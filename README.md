@@ -10,7 +10,7 @@ Most tutorials using the public [UCI Heart Disease dataset](https://archive.ics.
 
 - [x] **Step 0:** Pre-specified experimental protocol locked in [`MASTERPLAN.md`](MASTERPLAN.md)
 - [x] **Step 1:** Data download & four-hospital cohort/missingness audit ([`src/01_audit_data.py`](src/01_audit_data.py))
-- [ ] **Step 2:** Internal 5-fold cross-validation & frozen model training on Cleveland (`src/02_train_internal.py`)
+- [x] **Step 2:** Internal 5-fold cross-validation & frozen model training on Cleveland ([`src/02_train_internal.py`](src/02_train_internal.py))
 - [ ] **Step 3:** External validation across Hungary, Switzerland & Long Beach VA + shift diagnostics & figures (`src/03_evaluate_external.py`)
 - [ ] **Step 4:** Concise 1–2 page technical report (`report/report.md`) & independent Devil's Advocate / QA audit
 
@@ -43,7 +43,23 @@ Running `python3 src/01_audit_data.py` reveals severe **prevalence shift**, **de
 - **Why accuracy alone misleads:** Predicting "disease for everyone" achieves **93.5% accuracy** in Switzerland and **74.5%** in Long Beach VA.
 - **Why Full-13 is fragile:** Nearly 100% of external patients (99.5%–100.0%) are missing at least one feature in `Full-13` (driven by `ca`, `thal`, and `slope`).
 
-Full tables are saved in [`results/tables/`](results/tables/) and data provenance/SHA-256 checksums in [`data/raw/DATA_PROVENANCE.md`](data/raw/DATA_PROVENANCE.md).
+---
+
+## Step 2 Findings: Internal 5-Fold Cross-Validation on Cleveland ($n = 303$)
+
+Running `python3 src/02_train_internal.py` evaluates all four pre-specified pipelines inside Cleveland using leakage-free Stratified 5-Fold CV (`random_state=42`, pooled out-of-fold metrics with 1,000-sample stratified bootstrap 95% CIs):
+
+| Feature Set | Model | ROC-AUC (95% CI) | PR-AUC (95% CI) | Balanced Acc (95% CI) | Sensitivity (95% CI) | Specificity (95% CI) | Brier Score (95% CI) | Mean Pred Risk | Obs. Prev | Accuracy (Maj. Base) |
+| --- | --- | --- | --- | --- | --- | --- | --- | ---: | ---: | --- |
+| Full-13 | LogReg | 0.911 (0.876–0.940) | 0.904 (0.864–0.938) | 0.844 (0.802–0.881) | 0.791 (0.727–0.856) | 0.896 (0.848–0.939) | 0.116 (0.093–0.140) | 0.461 | 0.459 | 0.848 (0.541) |
+| Full-13 | RF | 0.913 (0.880–0.941) | 0.908 (0.873–0.939) | 0.837 (0.793–0.877) | 0.777 (0.705–0.842) | 0.896 (0.848–0.939) | 0.124 (0.107–0.142) | 0.457 | 0.459 | 0.842 (0.541) |
+| Core-10 | LogReg | 0.878 (0.839–0.914) | 0.867 (0.820–0.908) | 0.788 (0.739–0.833) | 0.734 (0.662–0.806) | 0.841 (0.787–0.896) | 0.140 (0.117–0.166) | 0.459 | 0.459 | 0.792 (0.541) |
+| Core-10 | RF | 0.867 (0.825–0.905) | 0.858 (0.811–0.899) | 0.762 (0.710–0.807) | 0.712 (0.640–0.777) | 0.811 (0.744–0.872) | 0.151 (0.133–0.170) | 0.460 | 0.459 | 0.766 (0.541) |
+
+- **Strong internal performance & calibration:** Inside Cleveland, `Full-13` models reach ROC-AUC ~0.91 with well-calibrated mean predicted risk (0.457–0.461 vs. 0.459 observed prevalence).
+- **Heavy reliance on non-portable tests:** By out-of-fold permutation importance (ROC-AUC drop), **all three features missing externally rank in Cleveland's Top 5**: for `Full-13 + LogReg`, `ca` (#1, −0.058), `thal` (#4, −0.022), and `slope` (#5, −0.011); for `Full-13 + RF`, `thal` (#1, −0.052) and `ca` (#2, −0.039) are the two single most important predictors.
+
+Full tables are saved in [`results/tables/`](results/tables/).
 
 ---
 
@@ -62,7 +78,7 @@ All modeling choices were locked in [`MASTERPLAN.md`](MASTERPLAN.md) prior to ru
   - **Discrimination:** ROC-AUC (primary), PR-AUC, Balanced Accuracy, Sensitivity, Specificity (at fixed 0.5 threshold).
   - **Calibration:** Brier Score and predicted risk vs. observed prevalence.
   - **Context:** Accuracy reported strictly alongside the majority-class baseline.
-  - **Uncertainty:** 1,000-sample stratified bootstrap 95% confidence intervals on external cohorts.
+  - **Uncertainty:** 1,000-sample stratified bootstrap 95% confidence intervals.
 
 ---
 
@@ -71,6 +87,7 @@ All modeling choices were locked in [`MASTERPLAN.md`](MASTERPLAN.md) prior to ru
 ```bash
 pip install -r requirements.txt
 python3 src/01_audit_data.py
+python3 src/02_train_internal.py
 ```
 
 ---
@@ -85,7 +102,9 @@ Heart-Disease-Prediction/
 ├── data/raw/                     # UCI Heart Disease 4-hospital raw files + provenance
 ├── src/
 │   ├── common.py                 # Shared schema, feature sets, and cohort loader
-│   └── 01_audit_data.py          # Cohort, missingness, impossible-zero & covariate audit
+│   ├── metrics.py                # Unified metrics and stratified bootstrap CIs
+│   ├── 01_audit_data.py          # Cohort, missingness, impossible-zero & covariate audit
+│   └── 02_train_internal.py      # Internal 5-fold CV & frozen Cleveland model training
 ├── results/
 │   ├── models/                   # Frozen Cleveland-trained pipelines (gitignored)
 │   ├── tables/                   # Reproducible CSV/Markdown audit & evaluation tables

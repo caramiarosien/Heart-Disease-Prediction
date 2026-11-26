@@ -4,6 +4,8 @@ Does a heart disease prediction model trained on patients from a single hospital
 
 Most tutorials using the public [UCI Heart Disease dataset](https://archive.ics.uci.edu/dataset/45/heart+disease) train and test exclusively on the 303 Cleveland patients and ignore the remaining 617 patients from three other clinical sites. This project implements a **pre-specified, leakage-free validation pipeline** to test cross-hospital transportability and diagnose **missingness shift**, **covariate shift**, and **prevalence/calibration shift**.
 
+> **Full Technical Report (1–2 pages):** Read [`report/report.md`](report/report.md) for the complete methods, shift diagnostics, limitations, and clinical ML takeaways.
+
 ---
 
 ## Project Status
@@ -12,17 +14,18 @@ Most tutorials using the public [UCI Heart Disease dataset](https://archive.ics.
 - [x] **Step 1:** Data download & four-hospital cohort/missingness audit ([`src/01_audit_data.py`](src/01_audit_data.py))
 - [x] **Step 2:** Internal 5-fold cross-validation & frozen model training on Cleveland ([`src/02_train_internal.py`](src/02_train_internal.py))
 - [x] **Step 3:** External validation across Hungary, Switzerland & Long Beach VA + shift diagnostics & 3 figures ([`src/03_evaluate_external.py`](src/03_evaluate_external.py))
-- [ ] **Step 4:** Concise 1–2 page technical report (`report/report.md`) & independent Devil's Advocate / QA audit
+- [x] **Step 4:** Concise 1–2 page technical report ([`report/report.md`](report/report.md)) & deterministic end-to-end verification
+- [ ] **Step 5:** Independent Devil's Advocate / QA audit & final polish
 
 ---
 
 ## Headline Findings
 
-1. **Internal Cleveland superiority disappears across hospitals:** Inside Cleveland (5-fold CV), the standard `Full-13` tutorial models lead `Core-10` by **+0.033 to +0.046 ROC-AUC** (`0.911–0.913` vs. `0.867–0.878`). Outside Cleveland, `Full-13` loses this advantage and suffers a sharp collapse in sensitivity (`0.470–0.574` in Switzerland and Long Beach VA).
-2. **Why `Full-13` breaks externally (Missingness Shift):** `Full-13` relies heavily on three tests—`ca`, `thal`, and `slope`—that are missing in **98.4%**, **78.4%**, and **50.1%** of external patients. Because Cleveland's training median (`ca = 0`) and mode (`thal = 3`) correspond to *healthy* findings, imputing unavailable external tests systematically pushes `Full-13` toward false negatives.
-3. **Portable `Core-10` improves reliability externally:** Dropping `ca`, `thal`, and `slope` matches or exceeds `Full-13` ROC-AUC in Switzerland and Long Beach VA while substantially improving pooled external **Balanced Accuracy** (`0.774–0.782` vs. `0.720–0.738`) and **Brier Score** (`0.151–0.158` vs. `0.208–0.209`).
+1. **Internal Cleveland superiority disappears across hospitals:** Inside Cleveland (5-fold CV), the standard `Full-13` tutorial models lead `Core-10` by **+0.032 to +0.046 ROC-AUC** (`0.911–0.913` vs. `0.867–0.878`). Outside Cleveland, `Full-13` loses this advantage and suffers a sharp collapse in sensitivity (`0.470–0.574` in Switzerland and Long Beach VA).
+2. **Why `Full-13` breaks externally (Missingness Shift):** `Full-13` relies heavily on three tests—`ca`, `thal`, and `slope`—that are missing in **98.4%**, **78.4%**, and **50.1%** of external patients. Because Cleveland's training median (`ca = 0`), mode (`thal = 3`), and mode (`slope = 1`) correspond to *healthy* findings, imputing unavailable external tests systematically pushes `Full-13` toward false negatives.
+3. **Portable `Core-10` improves reliability externally:** Dropping `ca`, `thal`, and `slope` surpasses `Full-13` on ROC-AUC in Switzerland and Long Beach VA while substantially improving pooled external **Balanced Accuracy** (`0.774–0.782` vs. `0.720–0.738`), **Sensitivity** (`0.746–0.808` vs. `0.505–0.573`), and **Brier Score** (`0.151–0.158` vs. `0.208–0.209`).
 4. **Prevalence shift breaks calibration and makes accuracy misleading:** Frozen Cleveland models (trained at 45.9% prevalence) severely under-predict risk in high-prevalence hospitals (Switzerland 93.5%, Long Beach VA 74.5%). Predicting "disease for everyone" achieves **93.5% accuracy** in Switzerland—higher than every model's thresholded accuracy (`52.0%–75.6%`)—demonstrating why ROC-AUC, Balanced Accuracy, Sensitivity/Specificity, and Brier Score are essential.
-5. **Data hygiene matters:** Leaving biologically impossible zeros (`chol == 0` in 100% of Switzerland and 24.5% of Long Beach VA) uncleaned shifts Logistic Regression probabilities by `0.161–0.183` on average in Switzerland and worsens its Brier Score by `+0.128` to `+0.149`.
+5. **Data hygiene matters:** Leaving biologically impossible zeros (`chol == 0` in 100.0% of Switzerland and 24.5% of Long Beach VA) uncleaned shifts Logistic Regression probabilities by `0.161–0.183` on average in Switzerland and worsens its Brier Score by `+0.128` to `+0.149`.
 
 ---
 
@@ -94,6 +97,8 @@ python3 src/02_train_internal.py
 python3 src/03_evaluate_external.py
 ```
 
+Running all three scripts sequentially reproduces all tables in `results/tables/` deterministically (verified bit-identical) and regenerates all three 300 DPI figures in `results/figures/`.
+
 ---
 
 ## Repository Structure
@@ -115,7 +120,7 @@ Heart-Disease-Prediction/
 │   ├── tables/                   # Reproducible CSV/Markdown audit & evaluation tables
 │   └── figures/                  # Publication-ready 300 DPI diagnostic figures
 └── report/
-    └── report.md                 # 1–2 page technical summary report
+    └── report.md                 # 1–2 page publication-style technical report
 ```
 
 ---

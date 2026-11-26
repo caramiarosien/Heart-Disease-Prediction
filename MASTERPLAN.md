@@ -97,5 +97,5 @@ Heart-Disease-Prediction/
 | **Schritt 0** | Protokoll als `MASTERPLAN.md` einfrieren, `README.md` + `requirements.txt` anlegen, auf GitHub pushen | Erledigt |
 | **Schritt 1** | UCI-Rohdaten laden & `src/01_audit_data.py` (Kohorten- & Missingness-Audit, `?` und `0`-Analyse) | Erledigt |
 | **Schritt 2** | `src/02_train_internal.py` (5-fold CV auf Cleveland für `Full-13` & `Core-10` × `LogReg` & `RF`, Feature-Wichtigkeit, finale Modelle speichern) | Erledigt |
-| **Schritt 3** | `src/03_evaluate_external.py` (externe Validierung mit 95 %-Bootstrap-CIs, Shift-Diagnostik, 3 publikationsreife Grafiken) | In Arbeit |
-| **Schritt 4** | Englischer 1–2-Seiten-Bericht (`report/report.md`), finale `README.md`-Aktualisierung & Devil's-Advocate-Review | Offen |
+| **Schritt 3** | `src/03_evaluate_external.py` (externe Validierung mit 95 %-Bootstrap-CIs, Shift-Diagnostik, 3 publikationsreife Grafiken) | Erledigt |
+| **Schritt 4** | Englischer 1–2-Seiten-Bericht (`report/report.md`), finale `README.md`-Aktualisierung & Devil's-Advocate-Review | In Arbeit |

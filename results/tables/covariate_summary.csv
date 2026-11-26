@@ -1,0 +1,89 @@
+Hospital,Feature,Feature_Type,Category,N_Observed,Mean,SD,Median,Q25,Q75,IQR,Count,Percent
+Cleveland,age,continuous,all,303,54.44,9.04,56.0,48.0,61.0,13.0,,
+Cleveland,trestbps,continuous,all,303,131.69,17.6,130.0,120.0,140.0,20.0,,
+Cleveland,chol,continuous,all,303,246.69,51.78,241.0,211.0,275.0,64.0,,
+Cleveland,thalach,continuous,all,303,149.61,22.88,153.0,133.5,166.0,32.5,,
+Cleveland,oldpeak,continuous,all,303,1.04,1.16,0.8,0.0,1.6,1.6,,
+Cleveland,ca,count,all,299,0.67,0.94,0.0,0.0,1.0,1.0,,
+Cleveland,sex,binary,1 (Male),303,,,,,,,206,68.0
+Cleveland,fbs,binary,1 (FBS > 120 mg/dl),303,,,,,,,45,14.9
+Cleveland,exang,binary,1 (Exercise angina),303,,,,,,,99,32.7
+Cleveland,cp,categorical,1 (Typical angina),303,,,,,,,23,7.6
+Cleveland,cp,categorical,2 (Atypical angina),303,,,,,,,50,16.5
+Cleveland,cp,categorical,3 (Non-anginal pain),303,,,,,,,86,28.4
+Cleveland,cp,categorical,4 (Asymptomatic),303,,,,,,,144,47.5
+Cleveland,restecg,categorical,0 (Normal),303,,,,,,,151,49.8
+Cleveland,restecg,categorical,1 (ST-T abnormality),303,,,,,,,4,1.3
+Cleveland,restecg,categorical,2 (LV hypertrophy),303,,,,,,,148,48.8
+Cleveland,slope,categorical,1 (Upsloping),303,,,,,,,142,46.9
+Cleveland,slope,categorical,2 (Flat),303,,,,,,,140,46.2
+Cleveland,slope,categorical,3 (Downsloping),303,,,,,,,21,6.9
+Cleveland,thal,categorical,3 (Normal),301,,,,,,,166,55.1
+Cleveland,thal,categorical,6 (Fixed defect),301,,,,,,,18,6.0
+Cleveland,thal,categorical,7 (Reversible defect),301,,,,,,,117,38.9
+Hungary,age,continuous,all,294,47.83,7.81,49.0,42.0,54.0,12.0,,
+Hungary,trestbps,continuous,all,293,132.58,17.63,130.0,120.0,140.0,20.0,,
+Hungary,chol,continuous,all,271,250.85,67.66,243.0,209.0,282.5,73.5,,
+Hungary,thalach,continuous,all,293,139.13,23.59,140.0,122.0,155.0,33.0,,
+Hungary,oldpeak,continuous,all,294,0.59,0.91,0.0,0.0,1.0,1.0,,
+Hungary,ca,count,all,3,0.0,0.0,0.0,0.0,0.0,0.0,,
+Hungary,sex,binary,1 (Male),294,,,,,,,213,72.4
+Hungary,fbs,binary,1 (FBS > 120 mg/dl),286,,,,,,,20,7.0
+Hungary,exang,binary,1 (Exercise angina),293,,,,,,,89,30.4
+Hungary,cp,categorical,1 (Typical angina),294,,,,,,,11,3.7
+Hungary,cp,categorical,2 (Atypical angina),294,,,,,,,106,36.1
+Hungary,cp,categorical,3 (Non-anginal pain),294,,,,,,,54,18.4
+Hungary,cp,categorical,4 (Asymptomatic),294,,,,,,,123,41.8
+Hungary,restecg,categorical,0 (Normal),293,,,,,,,235,80.2
+Hungary,restecg,categorical,1 (ST-T abnormality),293,,,,,,,52,17.7
+Hungary,restecg,categorical,2 (LV hypertrophy),293,,,,,,,6,2.0
+Hungary,slope,categorical,1 (Upsloping),104,,,,,,,12,11.5
+Hungary,slope,categorical,2 (Flat),104,,,,,,,91,87.5
+Hungary,slope,categorical,3 (Downsloping),104,,,,,,,1,1.0
+Hungary,thal,categorical,3 (Normal),28,,,,,,,7,25.0
+Hungary,thal,categorical,6 (Fixed defect),28,,,,,,,10,35.7
+Hungary,thal,categorical,7 (Reversible defect),28,,,,,,,11,39.3
+Switzerland,age,continuous,all,123,55.32,9.03,56.0,51.0,61.5,10.5,,
+Switzerland,trestbps,continuous,all,121,130.21,22.56,125.0,115.0,145.0,30.0,,
+Switzerland,chol,continuous,all,0,,,,,,,,
+Switzerland,thalach,continuous,all,122,121.56,25.98,121.0,104.25,140.0,35.75,,
+Switzerland,oldpeak,continuous,all,117,0.65,1.06,0.3,0.0,1.5,1.5,,
+Switzerland,ca,count,all,5,1.6,0.55,2.0,1.0,2.0,1.0,,
+Switzerland,sex,binary,1 (Male),123,,,,,,,113,91.9
+Switzerland,fbs,binary,1 (FBS > 120 mg/dl),48,,,,,,,5,10.4
+Switzerland,exang,binary,1 (Exercise angina),122,,,,,,,54,44.3
+Switzerland,cp,categorical,1 (Typical angina),123,,,,,,,4,3.3
+Switzerland,cp,categorical,2 (Atypical angina),123,,,,,,,4,3.3
+Switzerland,cp,categorical,3 (Non-anginal pain),123,,,,,,,17,13.8
+Switzerland,cp,categorical,4 (Asymptomatic),123,,,,,,,98,79.7
+Switzerland,restecg,categorical,0 (Normal),122,,,,,,,85,69.7
+Switzerland,restecg,categorical,1 (ST-T abnormality),122,,,,,,,30,24.6
+Switzerland,restecg,categorical,2 (LV hypertrophy),122,,,,,,,7,5.7
+Switzerland,slope,categorical,1 (Upsloping),106,,,,,,,33,31.1
+Switzerland,slope,categorical,2 (Flat),106,,,,,,,61,57.5
+Switzerland,slope,categorical,3 (Downsloping),106,,,,,,,12,11.3
+Switzerland,thal,categorical,3 (Normal),71,,,,,,,19,26.8
+Switzerland,thal,categorical,6 (Fixed defect),71,,,,,,,10,14.1
+Switzerland,thal,categorical,7 (Reversible defect),71,,,,,,,42,59.2
+Long Beach VA,age,continuous,all,200,59.35,7.81,60.0,55.0,64.0,9.0,,
+Long Beach VA,trestbps,continuous,all,143,134.7,18.45,130.0,120.0,148.0,28.0,,
+Long Beach VA,chol,continuous,all,144,239.57,52.79,228.0,208.0,271.25,63.25,,
+Long Beach VA,thalach,continuous,all,147,122.8,21.99,120.0,109.0,140.0,31.0,,
+Long Beach VA,oldpeak,continuous,all,144,1.32,1.11,1.5,0.0,2.0,2.0,,
+Long Beach VA,ca,count,all,2,0.0,0.0,0.0,0.0,0.0,0.0,,
+Long Beach VA,sex,binary,1 (Male),200,,,,,,,194,97.0
+Long Beach VA,fbs,binary,1 (FBS > 120 mg/dl),193,,,,,,,68,35.2
+Long Beach VA,exang,binary,1 (Exercise angina),147,,,,,,,95,64.6
+Long Beach VA,cp,categorical,1 (Typical angina),200,,,,,,,8,4.0
+Long Beach VA,cp,categorical,2 (Atypical angina),200,,,,,,,14,7.0
+Long Beach VA,cp,categorical,3 (Non-anginal pain),200,,,,,,,47,23.5
+Long Beach VA,cp,categorical,4 (Asymptomatic),200,,,,,,,131,65.5
+Long Beach VA,restecg,categorical,0 (Normal),200,,,,,,,80,40.0
+Long Beach VA,restecg,categorical,1 (ST-T abnormality),200,,,,,,,93,46.5
+Long Beach VA,restecg,categorical,2 (LV hypertrophy),200,,,,,,,27,13.5
+Long Beach VA,slope,categorical,1 (Upsloping),98,,,,,,,16,16.3
+Long Beach VA,slope,categorical,2 (Flat),98,,,,,,,53,54.1
+Long Beach VA,slope,categorical,3 (Downsloping),98,,,,,,,29,29.6
+Long Beach VA,thal,categorical,3 (Normal),34,,,,,,,4,11.8
+Long Beach VA,thal,categorical,6 (Fixed defect),34,,,,,,,8,23.5
+Long Beach VA,thal,categorical,7 (Reversible defect),34,,,,,,,22,64.7

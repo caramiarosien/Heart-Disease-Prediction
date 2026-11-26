@@ -1,0 +1,14 @@
+Feature,Feature Set,Cleveland (%),Hungary (%),Switzerland (%),Long Beach VA (%),External Pooled (%)
+age,Core-10,0.0,0.0,0.0,0.0,0.0
+sex,Core-10,0.0,0.0,0.0,0.0,0.0
+cp,Core-10,0.0,0.0,0.0,0.0,0.0
+trestbps,Core-10,0.0,0.3,1.6,28.5,9.7
+chol,Core-10,0.0,7.8,100.0,28.0,32.7
+fbs,Core-10,0.0,2.7,61.0,3.5,14.6
+restecg,Core-10,0.0,0.3,0.8,0.0,0.3
+thalach,Core-10,0.0,0.3,0.8,26.5,8.9
+exang,Core-10,0.0,0.3,0.8,26.5,8.9
+oldpeak,Core-10,0.0,0.0,4.9,28.0,10.0
+slope,Full-13 only,0.0,64.6,13.8,51.0,50.1
+ca,Full-13 only,1.3,99.0,95.9,99.0,98.4
+thal,Full-13 only,0.7,90.5,42.3,83.0,78.4

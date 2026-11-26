@@ -1,0 +1,6 @@
+| Hospital | N | Disease Count | Prevalence (%) | Healthy Count | Majority-Class Baseline Accuracy (%) | Mean Age (SD) | Male (%) | Any-Missing in Full-13 (%) | Any-Missing in Core-10 (%) |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Cleveland | 303 | 139 | 45.9 | 164 | 54.1 | 54.4 (9.0) | 68.0 | 2.0 | 0.0 |
+| Hungary | 294 | 106 | 36.1 | 188 | 63.9 | 47.8 (7.8) | 72.4 | 99.7 | 11.2 |
+| Switzerland | 123 | 115 | 93.5 | 8 | 93.5 | 55.3 (9.0) | 91.9 | 100.0 | 100.0 |
+| Long Beach VA | 200 | 149 | 74.5 | 51 | 74.5 | 59.4 (7.8) | 97.0 | 99.5 | 51.5 |

@@ -72,6 +72,7 @@ Heart-Disease-Prediction/
 ├── data/
 │   └── raw/                          # 4 UCI-Klinikdateien + Quellenhinweis
 ├── src/
+│   ├── common.py                     # Gemeinsames Schema, Feature-Sets & Loader
 │   ├── 01_audit_data.py              # Daten-Download/Audit, Missingness- & Kohortentabellen
 │   ├── 02_train_internal.py          # 5-fold CV auf Cleveland, Feature-Wichtigkeit, finale Pipelines
 │   └── 03_evaluate_external.py       # Externe Evaluation (Bootstrap-CIs), Shift-Diagnostik, 3 Grafiken
@@ -92,8 +93,8 @@ Heart-Disease-Prediction/
 
 | Schritt | Inhalt | Status |
 | --- | --- | --- |
-| **Schritt 0** | Protokoll als `MASTERPLAN.md` einfrieren, `README.md` + `requirements.txt` anlegen, auf GitHub pushen | In Arbeit |
-| **Schritt 1** | UCI-Rohdaten laden & `src/01_audit_data.py` (Kohorten- & Missingness-Audit, `?` und `0`-Analyse) | Offen |
-| **Schritt 2** | `src/02_train_internal.py` (5-fold CV auf Cleveland für `Full-13` & `Core-10` × `LogReg` & `RF`, Feature-Wichtigkeit, finale Modelle speichern) | Offen |
+| **Schritt 0** | Protokoll als `MASTERPLAN.md` einfrieren, `README.md` + `requirements.txt` anlegen, auf GitHub pushen | Erledigt |
+| **Schritt 1** | UCI-Rohdaten laden & `src/01_audit_data.py` (Kohorten- & Missingness-Audit, `?` und `0`-Analyse) | Erledigt |
+| **Schritt 2** | `src/02_train_internal.py` (5-fold CV auf Cleveland für `Full-13` & `Core-10` × `LogReg` & `RF`, Feature-Wichtigkeit, finale Modelle speichern) | In Arbeit |
 | **Schritt 3** | `src/03_evaluate_external.py` (externe Validierung mit 95 %-Bootstrap-CIs, Shift-Diagnostik, 3 publikationsreife Grafiken) | Offen |
-| **Schritt 4** | Englischer 1–2-Seiten-Bericht (`report/report.md`), finale `README.md`-Aktualisierung & End-to-End-Verifikation | Offen |
+| **Schritt 4** | Englischer 1–2-Seiten-Bericht (`report/report.md`), finale `README.md`-Aktualisierung & Devil's-Advocate-Review | Offen |
